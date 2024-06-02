@@ -9,7 +9,6 @@ https://tech-diary.net/django-todo-tutorial/#index_id0
 【Django入門】初心者でも1時間でWebアプリ（Todoアプリ）を作成するコース
 
 実行環境：Windows 10 Home 22H2
-
     using Django 5.0.6.
 
 1.Pythonのインストール（既存の場合は不要）
