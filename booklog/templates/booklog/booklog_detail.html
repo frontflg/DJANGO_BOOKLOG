@@ -1,0 +1,20 @@
+{% extends 'booklog/base.html' %}
+
+{% block header %}
+<h1>詳細</h1>
+{% endblock header %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h2>{{booklog.bookname}}</h2>
+        <p>ISBN13：{{booklog.isbn13}}　ISBN10：{{booklog.isbn10}}　分類：{{booklog.genre}}</p>
+        <p>著者：{{booklog.author}}　出版：{{booklog.publisher}}</p>
+        <p>発行：{{booklog.issuedate}}　取得：{{booklog.getdate}}　読了：{{booklog.readdate}}</p>
+        <p>価格：{{booklog.purchase}}円　取得：{{booklog.library}}　状態：{{booklog.state}}</p>
+        <p><small class="text-muted">概要：{{booklog.overview}}</small></p>
+        <p><small class="text-muted">感想：{{booklog.impressions}}</small></p>
+    </div>
+</div>
+<a class="btn btn-outline-secondary mt-2" href="{% url 'list' %}" role="button">戻る</a>
+{% endblock content %}
