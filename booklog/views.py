@@ -9,6 +9,7 @@ from .forms import BooklogForm
 class BooklogList(ListView):
     model = Booklog
     context_object_name = "booklogs"
+    paginate_by = 8
 
 class BooklogDetail(DetailView):
     model = Booklog
