@@ -6,10 +6,179 @@
 
 {% block content %}
 <form action="" method="POST">{% csrf_token %}
-    <table class="table">
+    <!-- table class="table">
         {{ form.as_table }}
+    </table -->
+
+    {{ form.non_field_errors }}
+
+    <table class="table">
+      <tr>
+        <td colspan="3">
+          <div class="field">
+            書　籍&nbsp;:
+            {{ form.bookname }}
+            <span class="helptext">{{ form.bookname.help_text }}</span>
+            {{ form.bookname.errors }}
+          </div>
+        </td>
+        <td colspan="2">
+          <div class="field">
+            {{ form.coverimg.label_tag }}
+            {{ form.coverimg }}
+            <span class="helptext">{{ form.coverimg.help_text }}</span>
+            {{ form.coverimg.errors }}
+          </div>
+        </td>
+       </tr>
+      <tr>
+        <td>
+          <div class="field">
+            {{ form.isbn13.label_tag }}
+            {{ form.isbn13 }}
+            <span class="helptext">{{ form.isbn13.help_text }}</span>
+            {{ form.isbn13.errors }}
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            {{ form.isbn10.label_tag }}
+            {{ form.isbn10 }}
+            <span class="helptext">{{ form.isbn10.help_text }}</span>
+            {{ form.isbn10.errors }}
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            分　類&nbsp;:
+            {{ form.genre }}
+            <span class="helptext">{{ form.genre.help_text }}</span>
+            {{ form.genre.errors }}
+          </div>
+        </td>
+        <td colspan="2">
+          <div class="field">
+            取得:
+            {{ form.library }}
+            <span class="helptext">{{ form.librarye.help_text }}</span>
+            {{ form.library.errors }}
+          </div>
+        </td>
+     </tr>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="field">
+            筆　者&nbsp;:
+            {{ form.author }}
+            <span class="helptext">{{ form.author.help_text }}</span>
+            {{ form.author.errors }}
+          </div>
+        </td>
+        <td colspan="2">
+          <div class="field">
+            出版社&nbsp;:
+            {{ form.publisher }}
+            <span class="helptext">{{ form.publisher.help_text }}</span>
+            {{ form.publisher.errors }}
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            {{ form.purchase.label_tag }}
+            {{ form.purchase }}
+            <span class="helptext">{{ form.purchase.help_text }}</span>
+            {{ form.purchase.errors }}
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td width="23%">
+          <div class="field">
+            {{ form.issuedate.label_tag }}&nbsp;
+            {{ form.issuedate }}
+            <span class="helptext">{{ form.issuedate.help_text }}</span>
+            {{ form.issuedate.errors }}
+          </div>
+        </td>
+        <td width="23%">
+          <div class="field">
+            {{ form.getdate.label_tag }}&nbsp;
+            {{ form.getdate }}
+            <span class="helptext">{{ form.getdate.help_text }}</span>
+            {{ form.getdate.errors }}
+          </div>
+        </td>
+        <td width="23%">
+          <div class="field">
+            {{ form.readdate.label_tag }}&nbsp;
+            {{ form.readdate }}
+            <span class="helptext">{{ form.readdate.help_text }}</span>
+            {{ form.readdate.errors }}
+          </div>
+        </td>
+        <td width="15%">
+          <div class="field">
+            状態:
+            {{ form.state }}
+            <span class="helptext">{{ form.state.help_text }}</span>
+            {{ form.state.errors }}
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            {{ form.ownership.label_tag }}
+            {{ form.ownership }}
+            <span class="helptext">{{ form.ownership.help_text }}</span>
+            {{ form.ownership.errors }}
+          </div>
+        </td>      </tr>
+      <tr>
+        <td colspan="5">
+          <div class="field">
+            概　要&nbsp;:
+            {{ form.overview }}
+            <span class="helptext">{{ form.overview.help_text }}</span>
+            {{ form.overview.errors }}
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <div class="field">
+            感　想&nbsp;:
+            {{ form.impressions }}
+            <span class="helptext">{{ form.impressions.help_text }}</span>
+            {{ form.impressions.errors }}
+          </div>
+        </td>
+      </tr>
     </table>
     <a class="btn btn-outline-secondary" href="{% url 'list' %}" role="button">戻る</a>
     <input class="btn btn-success" type="submit" value="送信">
 </form>
+
+<style>
+/* tr { width: 1000px; } */
+input[name="isbn13"]      { width:  15ch; } /* 最大 13文字 */
+input[name="isbn10"]      { width:  12ch; } /* 最大 10文字 */
+input[name="bookname"]    { width:  64ch; } /* 最大 50文字 */
+input[name="author"]      { width:  37ch; } /* 最大 25文字 */
+input[name="publisher"]   { width:  30ch; } /* 最大 25文字 */
+input[name="genre"]       { width:  15ch; } /* 最大 25文字 */
+input[name="issuedate"]   { width:  14ch; } /* 最大 10文字 */
+input[name="getdate"]     { width:  14ch; } /* 最大 10文字 */
+input[name="readdate"]    { width:  14ch; } /* 最大 10文字 */
+input[name="library"]     { width:  26ch; } /* 最大 25文字 */
+input[name="overview"]    { width:  97ch; } /* 最大255文字 */
+input[name="impressions"] { width: 102ch; } /* 最大255文字 */
+input[name="state"]       { width:   5ch; } /* 最大  1文字 */
+input[name="coverimg"]    { width:  16ch; } /* 最大 40文字 */
+input[name="purchase"]    { width:  10ch; } /* 数値 */
+textarea   { height: 100px; width: 890px; }
+</style>
+
+{% for error in form.errors %}
+    {{ error }}
+{% endfor %}
 {% endblock content %}
