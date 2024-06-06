@@ -67,6 +67,8 @@
 
 　■booklog/views.py
 
+　■booklog/forms.py
+
 　■booklog/urls.py
 
 　■booklog/templates/booklog/*.html
