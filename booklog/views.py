@@ -12,6 +12,16 @@ class BooklogList(ListView):
     ordering = '-getdate'
     paginate_by = 7
 
+    # 書名絞り込み
+    def get_queryset(self, **kwargs):
+        queryset = super().get_queryset(**kwargs)
+        query = self.request.GET
+
+        if q := query.get('q'):
+            queryset = queryset.filter(bookname__icontains=q)
+
+        return queryset.order_by('-bookname')
+
 class BooklogDetail(DetailView):
     model = Booklog
     context_object_name = "booklog"
