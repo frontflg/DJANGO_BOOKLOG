@@ -32,12 +32,13 @@
         </td>
        </tr>
       <tr>
+      </tr>
         <td>
           <div class="field">
             {{ form.isbn13.label_tag }}
             {{ form.isbn13 }}
             <span class="helptext">{{ form.isbn13.help_text }}</span>
-            {{ form.isbn13.errors }}
+            <span style="color:red;">{{ form.isbn13.errors }}</span>
           </div>
         </td>
         <td>
@@ -64,7 +65,6 @@
             {{ form.library.errors }}
           </div>
         </td>
-     </tr>
       </tr>
       <tr>
         <td colspan="2">
@@ -93,7 +93,7 @@
         </td>
       </tr>
       <tr>
-        <td width="23%">
+        <td>
           <div class="field">
             {{ form.issuedate.label_tag }}&nbsp;
             {{ form.issuedate }}
@@ -101,7 +101,7 @@
             {{ form.issuedate.errors }}
           </div>
         </td>
-        <td width="23%">
+        <td>
           <div class="field">
             {{ form.getdate.label_tag }}&nbsp;
             {{ form.getdate }}
@@ -109,7 +109,7 @@
             {{ form.getdate.errors }}
           </div>
         </td>
-        <td width="23%">
+        <td>
           <div class="field">
             {{ form.readdate.label_tag }}&nbsp;
             {{ form.readdate }}
@@ -117,7 +117,7 @@
             {{ form.readdate.errors }}
           </div>
         </td>
-        <td width="15%">
+        <td>
           <div class="field">
             状態:
             {{ form.state }}
@@ -132,7 +132,8 @@
             <span class="helptext">{{ form.ownership.help_text }}</span>
             {{ form.ownership.errors }}
           </div>
-        </td>      </tr>
+        </td>
+      </tr>
       <tr>
         <td colspan="5">
           <div class="field">
@@ -159,23 +160,24 @@
 </form>
 
 <style>
-/* tr { width: 1000px; } */
+table{ table-layout: fixed;
+       border-collapse: collapse;
+       }
+input[name="bookname"]    { width:  64ch; } /* 最大 50文字 */
+input[name="coverimg"]    { width:  15ch; } /* 最大 40文字 */
 input[name="isbn13"]      { width:  15ch; } /* 最大 13文字 */
 input[name="isbn10"]      { width:  12ch; } /* 最大 10文字 */
-input[name="bookname"]    { width:  64ch; } /* 最大 50文字 */
-input[name="author"]      { width:  37ch; } /* 最大 25文字 */
-input[name="publisher"]   { width:  30ch; } /* 最大 25文字 */
 input[name="genre"]       { width:  15ch; } /* 最大 25文字 */
-input[name="issuedate"]   { width:  14ch; } /* 最大 10文字 */
-input[name="getdate"]     { width:  14ch; } /* 最大 10文字 */
-input[name="readdate"]    { width:  14ch; } /* 最大 10文字 */
-input[name="library"]     { width:  26ch; } /* 最大 25文字 */
-input[name="overview"]    { width:  97ch; } /* 最大255文字 */
-input[name="impressions"] { width: 102ch; } /* 最大255文字 */
-input[name="state"]       { width:   5ch; } /* 最大  1文字 */
-input[name="coverimg"]    { width:  16ch; } /* 最大 40文字 */
+input[name="library"]     { width:  34ch; } /* 最大 25文字 */
+input[name="author"]      { width:  38ch; } /* 最大 25文字 */
+input[name="publisher"]   { width:  38ch; } /* 最大 25文字 */
 input[name="purchase"]    { width:  10ch; } /* 数値 */
-textarea   { height: 100px; width: 890px; }
+input[name="issuedate"]   { width:  14ch; } /* 最大 10文字 */
+input[name="readdate"]    { width:  14ch; } /* 最大 10文字 */
+input[name="getdate"]     { width:  14ch; } /* 最大 10文字 */
+input[name="state"]       { width:   5ch; } /* 最大  1文字 */
+input[name="overview"]    { width: 105ch; } /* 最大255文字 */
+textarea   { height: 100px; width: 960px; }
 </style>
 
 {% for error in form.errors %}
