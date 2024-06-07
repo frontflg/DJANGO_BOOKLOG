@@ -31,6 +31,7 @@
         </tbody>
     </table>
 </div>
+<table class="table w-50"><tr><td>
 <nav aria-label="Page navigation">
   <ul class="pagination text-center">
     {% if page_obj.has_previous %}
@@ -58,4 +59,10 @@
     {% endif %}
   </ul>
 </nav>
+</td><td>
+      <form class="d-flex" action="" method="get">
+        <input name="q" class="form-control w-75 h-50" type="search" placeholder="書名" aria-label="Search">
+        &nbsp;<button class="btn btn-outline-primary pl-5 ml-2" type="submit">検索</button>
+      </form>
+</td></tr></table>
 {% endblock content %}
