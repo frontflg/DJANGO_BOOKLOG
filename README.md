@@ -25,9 +25,9 @@
 
 　% cd django-booklog
 
-　% py -m venv .venv
+　% py -m venv myvenv
 
-　% .venv\Scripts\activate.bat
+　% myvenv\Scripts\activate.bat
 
 3.Djangoのインストール
 
@@ -35,17 +35,24 @@
 
 4.Djangoプロジェクトの作成
 
-　(.venv)% django-admin startproject config .
+　(.venv)% django-admin startproject mysite .
 
 5.アプリの作成
 
-　(.venv)% py manage.py startapp booklog
+　(.venv)% py manage.py startapp app
 
-　■config/settings.py
+　■mysite/settings.py
+
+　必要であれば
+　　(.venv)% pip install django-widget-tweaks
+　　(.venv)% pip install django-accounts
+　　(.venv)% pip install django-allauth
+　　(.venv)% pip install requests
+　　等
 
 6.モデルの作成と有効化
 
-　■booklog/models.py
+　■app/models.py
 
 　(.venv)% py manage.py makemigrations
 
@@ -55,7 +62,7 @@
 
 　(.venv)% py manage.py createsuperuser
 
-　■booklog/admin.py
+　■app/admin.py
 
 　(.venv)% py manage.py runserver
 
@@ -63,15 +70,15 @@
 
 8.アプリ処理、画面の作成
 
-　■config/urls.py
+　■mysite/urls.py
 
-　■booklog/views.py
+　■app/views.py
 
-　■booklog/forms.py
+　■app/forms.py
 
-　■booklog/urls.py
+　■app/urls.py
 
-　■booklog/templates/booklog/*.html
+　■app/templates/appg/*.html
 
 9.アプリの確認
 
