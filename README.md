@@ -83,7 +83,7 @@
 
 　■app/urls.py
 
-　■app/templates/appg/*.html
+　■app/templates/app/*.html
 
 9.アプリの確認
 
