@@ -44,6 +44,7 @@
 　■mysite/settings.py
 
 　必要であれば
+
 　　(.venv)% pip install django-widget-tweaks
 
 　　(.venv)% pip install django-accounts
