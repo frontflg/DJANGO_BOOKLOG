@@ -1,0 +1,37 @@
+{% extends "app/base.html" %}
+
+{% block header %}
+<h1>書籍詳細情報</h1>
+{% endblock header %}
+
+{% block content %}
+<div class="my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body px-2 py-1">
+                    <div class="p-4">
+                        <h3>{{ book_data.title }}</h3>
+                        <hr>
+                        <p class="mb-3">著　者：{{ book_data.author }}</p>
+                        <p>出版社：{{ book_data.publisherName }}</p>
+                        <p>発売日：{{ book_data.salesDate }}</p>
+                        <p>ISBN13：{{ book_data.isbn }}</p>
+                        <p>価　格：{{ book_data.itemPrice }}円</p>
+                        <p>概　要：{{ book_data.itemCaption }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="{{ book_data.image }}" class="img-fluid" alt="" style="height: 390px">
+        </div>
+    </div>
+
+    <div class="my-3">
+        <a class="btn btn-primary" href="javascript:history.back();">戻る</a>
+    </div>
+
+</div>
+
+{% endblock %}

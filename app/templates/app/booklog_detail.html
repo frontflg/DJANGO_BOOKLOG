@@ -1,0 +1,44 @@
+{% extends 'app/base.html' %}
+
+{% block header %}
+<h1>読書履歴詳細</h1>
+{% endblock header %}
+
+{% block content %}
+<div class="my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body px-2 py-1">
+                    <div class="p-4">
+                        <h3>{{booklog.bookname}}</h3>
+                        <hr>
+                        <p class="mb-3">著者：{{booklog.author}}</p>
+                        <p>出版：{{booklog.publisher}}　分類：{{booklog.genre}}</p>
+                        <p>発行：{{booklog.issuedate}}　取得：{{booklog.getdate}}</p>
+                        <p>読了：{{booklog.readdate}}　状態：
+                            {% if booklog.state == '未'  %} 未読
+                            {% elif booklog.state == '中' %} 読書中
+                            {% elif booklog.state == '了' %} 読了
+                            {% endif %}</p>
+                        <p>ISBN13：{{booklog.isbn13}}　ISBN10：{{booklog.isbn10}}</p>
+                        <p class="mt-3">価格：{{booklog.purchase}}円　取得：{{booklog.library}}</p>
+                        <p>概要：{{booklog.overview}}</p>
+                        <p>感想：{{booklog.impressions}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="https://images-fe.ssl-images-amazon.com/images/P/{{ booklog.isbn10 }}.09.LZZZZZZZ"
+                 class="card-img-top w-50" alt="{{ booklog.bookname }}">
+        </div>
+    </div>
+
+    <div class="my-3">
+        <a class="btn btn-primary" href="../list/" role="button">戻る</a>
+    </div>
+
+</div>
+
+{% endblock content %}
