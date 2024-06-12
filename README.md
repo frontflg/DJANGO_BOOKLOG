@@ -45,9 +45,13 @@
 
 　必要であれば
 　　(.venv)% pip install django-widget-tweaks
+
 　　(.venv)% pip install django-accounts
+
 　　(.venv)% pip install django-allauth
+
 　　(.venv)% pip install requests
+
 　　等
 
 6.モデルの作成と有効化
