@@ -16,9 +16,10 @@
                         <p class="mb-3">著　者：{{ book_data.author }}</p>
                         <p>出版社：{{ book_data.publisherName }}</p>
                         <p>発売日：{{ book_data.salesDate }}</p>
-                        <p>ISBN13：{{ book_data.isbn }}</p>
-                        <p>価　格：{{ book_data.itemPrice }}円</p>
-                        <p>概　要：{{ book_data.itemCaption }}</p>
+                        <p>ISBN：{{ book_data.isbn }}</p>
+                        <p>価格：{{ book_data.itemPrice }}円</p>
+                        <p>概要：{{ book_data.itemCaption }}</p>
+                        <p>URL：<a href="{{ book_data.itemUrl }}" target="_blank">{{ book_data.itemUrl }}</a></p>
                     </div>
                 </div>
             </div>
