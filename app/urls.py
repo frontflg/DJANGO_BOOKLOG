@@ -9,6 +9,7 @@ urlpatterns = [
     path("list/",              BooklogList.as_view(),       name="list"),
     path("logdetail/<int:pk>", BooklogDetail.as_view(),     name="booklog_detail"),
     path("create/",            BooklogCreate.as_view(),     name="booklog_create"),
+    path("create/<str:isbn>",  BooklogCreate.as_view(),     name="booklog_create"),
     path("update/<int:pk>",    BooklogUpdate.as_view(),     name="booklog_update"),
     path("delete/<int:pk>",    BooklogDelete.as_view(),     name="booklog_delete"),
 ]
