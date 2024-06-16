@@ -197,6 +197,43 @@ class BooklogCreate(CreateView):
     form_class = BooklogForm
     success_url = reverse_lazy("list")
 
+    def get_initial(self, **kwargs):
+        initial = super().get_initial()
+        try:
+            isbn = self.kwargs['isbn']
+        except:
+            isbn = ''
+
+        params = {
+            'isbn': isbn
+        }
+        if isbn:
+            items = get_ggl_data(params)
+            try:
+                items = items[0]
+                item  = items['volumeInfo']
+                initial["isbn13"]    = isbn
+                initial["bookname"]  = item['title']
+                initial["author"]    = item['authors'][0]
+                initial["issuedate"] = item['publishedDate']
+                initial["publisher"] = item['publisher']
+                initial["overview"]  = item['description']
+                try:
+                    sale = items['saleInfo']
+                    price = sale['listPrice']
+                    initial["purchase"]  = price['amount']
+                    print(price)
+                except:
+                    initial["purchase"]  = ''
+                tmp = item["industryIdentifiers"]
+                value_list = [x["identifier"] for x in tmp if x["type"] == "ISBN_10"]
+                value = value_list[0] if len(value_list) else 0
+                initial["isbn10"] = value
+            except:
+                initial["isbn13"] = isbn
+
+        return initial
+
 class BooklogUpdate(UpdateView):
     model = Booklog
   # fields = "__all__"
