@@ -19,7 +19,7 @@
             書　籍&nbsp;:
             {{ form.bookname }}
             <span class="helptext">{{ form.bookname.help_text }}</span>
-            {{ form.bookname.errors }}
+            <span style="color:red;">{{ form.bookname.errors }}</span>
           </div>
         </td>
         <td colspan="2">
@@ -27,7 +27,7 @@
             {{ form.coverimg.label_tag }}
             {{ form.coverimg }}
             <span class="helptext">{{ form.coverimg.help_text }}</span>
-            {{ form.coverimg.errors }}
+            <span style="color:red;">{{ form.coverimg.errors }}</span>
           </div>
         </td>
        </tr>
@@ -46,7 +46,7 @@
             {{ form.isbn10.label_tag }}
             {{ form.isbn10 }}
             <span class="helptext">{{ form.isbn10.help_text }}</span>
-            {{ form.isbn10.errors }}
+            <span style="color:red;">{{ form.isbn10.errors }}</span>
           </div>
         </td>
         <td>
@@ -54,7 +54,7 @@
             分　類&nbsp;:
             {{ form.genre }}
             <span class="helptext">{{ form.genre.help_text }}</span>
-            {{ form.genre.errors }}
+            <span style="color:red;">{{ form.genre.errors }}</span>
           </div>
         </td>
         <td colspan="2">
@@ -62,7 +62,7 @@
             取得:
             {{ form.library }}
             <span class="helptext">{{ form.librarye.help_text }}</span>
-            {{ form.library.errors }}
+            <span style="color:red;">{{ form.library.errors }}</span>
           </div>
         </td>
       </tr>
@@ -72,7 +72,7 @@
             筆　者&nbsp;:
             {{ form.author }}
             <span class="helptext">{{ form.author.help_text }}</span>
-            {{ form.author.errors }}
+            <span style="color:red;">{{ form.author.errors }}</span>
           </div>
         </td>
         <td colspan="2">
@@ -80,7 +80,7 @@
             出版社&nbsp;:
             {{ form.publisher }}
             <span class="helptext">{{ form.publisher.help_text }}</span>
-            {{ form.publisher.errors }}
+            <span style="color:red;">{{ form.publisher.errors }}</span>
           </div>
         </td>
         <td>
@@ -88,7 +88,7 @@
             {{ form.purchase.label_tag }}
             {{ form.purchase }}
             <span class="helptext">{{ form.purchase.help_text }}</span>
-            {{ form.purchase.errors }}
+            <span style="color:red;">{{ form.purchase.errors }}</span>
           </div>
         </td>
       </tr>
@@ -98,7 +98,7 @@
             {{ form.issuedate.label_tag }}&nbsp;
             {{ form.issuedate }}
             <span class="helptext">{{ form.issuedate.help_text }}</span>
-            {{ form.issuedate.errors }}
+            <span style="color:red;">{{ form.issuedate.errors }}</span>
           </div>
         </td>
         <td>
@@ -106,7 +106,7 @@
             {{ form.getdate.label_tag }}&nbsp;
             {{ form.getdate }}
             <span class="helptext">{{ form.getdate.help_text }}</span>
-            {{ form.getdate.errors }}
+            <span style="color:red;">{{ form.getdate.errors }}</span>
           </div>
         </td>
         <td>
@@ -114,7 +114,7 @@
             {{ form.readdate.label_tag }}&nbsp;
             {{ form.readdate }}
             <span class="helptext">{{ form.readdate.help_text }}</span>
-            {{ form.readdate.errors }}
+            <span style="color:red;">{{ form.readdate.errors }}</span>
           </div>
         </td>
         <td>
@@ -122,7 +122,7 @@
             状態:
             {{ form.state }}
             <span class="helptext">{{ form.state.help_text }}</span>
-            {{ form.state.errors }}
+            <span style="color:red;">{{ form.state.errors }}</span>
           </div>
         </td>
         <td>
@@ -130,7 +130,7 @@
             {{ form.ownership.label_tag }}
             {{ form.ownership }}
             <span class="helptext">{{ form.ownership.help_text }}</span>
-            {{ form.ownership.errors }}
+            <span style="color:red;">{{ form.ownership.errors }}</span>
           </div>
         </td>
       </tr>
@@ -140,7 +140,7 @@
             概　要&nbsp;:
             {{ form.overview }}
             <span class="helptext">{{ form.overview.help_text }}</span>
-            {{ form.overview.errors }}
+            <span style="color:red;">{{ form.overview.errors }}</span>
           </div>
         </td>
       </tr>
@@ -150,25 +150,20 @@
             感　想&nbsp;:
             {{ form.impressions }}
             <span class="helptext">{{ form.impressions.help_text }}</span>
-            {{ form.impressions.errors }}
+            <span style="color:red;">{{ form.impressions.errors }}</span>
           </div>
         </td>
       </tr>
     </table>
-    <a class="btn btn-outline-secondary" href="../list/" role="button">戻る</a>
+    <a class="btn btn-outline-secondary" href="javascript:history.back();" role="button">戻る</a>
     <input class="btn btn-success" type="submit" value="送信">
 </form>
 
 <style>
 table{ table-layout: fixed;
-    /* border: 1px solid black; */
        border-collapse: collapse;
-    /* margin-bottom: 1rem;
        vertical-align: top; */
-    /* width: 100%; */
        }
-/* tr { width: 100%; } */
-/* td { border: 1px solid black; border-collapse: collapse; } */
 input[name="bookname"]    { width:  64ch; } /* 最大 50文字 */
 input[name="coverimg"]    { width:  15ch; } /* 最大 40文字 */
 input[name="isbn13"]      { width:  15ch; } /* 最大 13文字 */
@@ -183,7 +178,6 @@ input[name="readdate"]    { width:  14ch; } /* 最大 10文字 */
 input[name="getdate"]     { width:  14ch; } /* 最大 10文字 */
 input[name="state"]       { width:   5ch; } /* 最大  1文字 */
 input[name="overview"]    { width: 105ch; } /* 最大255文字 */
-/* input[name="impressions"] { width: 120ch; } 最大255文字 */
 textarea   { height: 100px; width: 960px; }
 </style>
 
