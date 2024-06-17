@@ -212,12 +212,39 @@ class BooklogCreate(CreateView):
             try:
                 items = items[0]
                 item  = items['volumeInfo']
-                initial["isbn13"]    = isbn
-                initial["bookname"]  = item['title']
-                initial["author"]    = item['authors'][0]
-                initial["issuedate"] = item['publishedDate']
-                initial["publisher"] = item['publisher']
-                initial["overview"]  = item['description']
+                tmp = item["industryIdentifiers"]
+                if len(isbn) == 10:
+                    initial["isbn10"]    = isbn
+                    if tmp[0]["type"] == "ISBN_13":
+                        initial["isbn13"] = tmp[0]["identifier"]
+                    if tmp[1]["type"] == "ISBN_13":
+                        initial["isbn13"] = tmp[1]["identifier"]
+                else:
+                    initial["isbn13"]    = isbn
+                    if tmp[0]["type"] == "ISBN_10":
+                        initial["isbn10"] = tmp[0]["identifier"]
+                    if tmp[1]["type"] == "ISBN_10":
+                        initial["isbn10"] = tmp[1]["identifier"]
+                try:
+                    initial["bookname"]  = item['title']
+                except:
+                    initial["bookname"]  = ""
+                try:
+                    initial["author"]    = item['authors'][0] + "／" + item['authors'][1]
+                except:
+                    initial["author"]    = item['authors'][0]
+                try:
+                    initial["issuedate"] = item['publishedDate']
+                except:
+                    initial["issuedate"] = ""
+                try:
+                    initial["publisher"] = item['publisher']
+                except:
+                    initial["publisher"] = ""
+                try:
+                    initial["overview"]  = item['description']
+                except:
+                    initial["overview"]  = ""
                 try:
                     sale = items['saleInfo']
                     price = sale['listPrice']
@@ -225,12 +252,8 @@ class BooklogCreate(CreateView):
                     print(price)
                 except:
                     initial["purchase"]  = ''
-                tmp = item["industryIdentifiers"]
-                value_list = [x["identifier"] for x in tmp if x["type"] == "ISBN_10"]
-                value = value_list[0] if len(value_list) else 0
-                initial["isbn10"] = value
             except:
-                initial["isbn13"] = isbn
+                print('例外発生 ' + isbn)
 
         return initial
 
