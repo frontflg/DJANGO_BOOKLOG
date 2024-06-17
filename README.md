@@ -31,27 +31,27 @@
 
 3.Djangoのインストール
 
-　(.venv)% py -m pip install Django
+　(myvenv)% py -m pip install Django
 
 4.Djangoプロジェクトの作成
 
-　(.venv)% django-admin startproject mysite .
+　(myvenv)% django-admin startproject mysite .
 
 5.アプリの作成
 
-　(.venv)% py manage.py startapp app
+　(myvenv)% py manage.py startapp app
 
 　■mysite/settings.py
 
 　必要であれば
 
-　　(.venv)% pip install django-widget-tweaks
+　　(myvenv)% pip install django-widget-tweaks
 
-　　(.venv)% pip install django-accounts
+　　(myvenv)% pip install django-accounts
 
-　　(.venv)% pip install django-allauth
+　　(myvenv)% pip install django-allauth
 
-　　(.venv)% pip install requests
+　　(myvenv)% pip install requests
 
 　　等
 
@@ -59,17 +59,17 @@
 
 　■app/models.py
 
-　(.venv)% py manage.py makemigrations
+　(myvenv)% py manage.py makemigrations
 
-　(.venv)% py manage.py migrate
+　(myvenv)% py manage.py migrate
 
 7.管理ユーザーの作成
 
-　(.venv)% py manage.py createsuperuser
+　(myvenv)% py manage.py createsuperuser
 
 　■app/admin.py
 
-　(.venv)% py manage.py runserver
+　(myvenv)% py manage.py runserver
 
 　http://127.0.0.1:8000/admin
 
@@ -87,7 +87,7 @@
 
 9.アプリの確認
 
-　(.venv)% py manage.py runserver
+　(myvenv)% py manage.py runserver
 
 　http://127.0.0.1:8000/
 
