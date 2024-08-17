@@ -12,4 +12,5 @@ urlpatterns = [
     path("create/<str:isbn>",  BooklogCreate.as_view(),     name="booklog_create"),
     path("update/<int:pk>",    BooklogUpdate.as_view(),     name="booklog_update"),
     path("delete/<int:pk>",    BooklogDelete.as_view(),     name="booklog_delete"),
+    path('export/',            views.csv_export,            name='csv_export'),
 ]
