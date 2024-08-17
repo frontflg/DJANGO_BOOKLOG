@@ -1,10 +1,13 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.http import HttpResponse
+from datetime import datetime, date, time, timedelta
+from .forms import SearchForm, BooklogForm
+from .models import Booklog
 import json
 import requests
-from .forms import SearchForm, BooklogForm
-from django.urls import reverse_lazy
-from .models import Booklog
+import csv,urllib
 
 SEARCH_URL = 'https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404?format=json&applicationId=1002196771843734307'
 
@@ -37,6 +40,41 @@ def get_ggl_data(params):
     except KeyError:
         items = []
     return items
+
+def csv_export(request):
+    response = HttpResponse(content_type='text/csv; charset=Shift-JIS')
+    t = datetime.now()
+    str_time = t.strftime('%Y%m%d%H%M')
+    f = "BookLog" + "_" + str_time + ".csv"
+    filename = urllib.parse.quote((f).encode("utf8"))
+    response['Content-Disposition'] = 'attachment; filename*=UTF-8\'\'{}'.format(filename)
+
+    header = ['No', 'ISBN13', 'ISBN10', '書籍タイトル', '筆者', '出版社', 'ジャンル', '発行日', '取得日', '読了日', '所有', '価格', '取得元', '概要', '感想', '状態', '表紙']
+    writer = csv.writer(response)
+    writer.writerow(header)
+    booklog_list = Booklog.objects.all()
+    for booklog in booklog_list:
+        idNo        = booklog.id
+        isbn13      = booklog.isbn13
+        isbn10      = booklog.isbn10
+        bookname    = booklog.bookname
+        author      = booklog.author
+        publisher   = booklog.publisher
+        genre       = booklog.genre
+        issuedate   = booklog.issuedate
+        getdate     = booklog.getdate
+        readdate    = booklog.readdate
+        ownership   = booklog.ownership
+        purchase    = booklog.purchase
+        library     = booklog.library
+        overview    = booklog.overview.replace('\r\n', ' ')
+        impressions = booklog.impressions.replace('\r\n', ' ')
+        state       = booklog.state
+        coverimg    = booklog.coverimg
+        row = []
+        row += [idNo, isbn13, isbn10, bookname, author, publisher, genre, issuedate, getdate, readdate, ownership, purchase, library, overview, impressions, state, coverimg]
+        writer.writerow(row)
+    return response
 
 class IndexView(View):
     def get(self, request, *args, **kwargs):
