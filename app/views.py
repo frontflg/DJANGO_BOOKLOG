@@ -213,7 +213,7 @@ class BooklogList(ListView):
     model = Booklog
     context_object_name = 'booklogs'
     ordering = ['-getdate']
-    paginate_by = 8
+    paginate_by = 7
 
     # 書名絞り込み
     def get_queryset(self, **kwargs):
