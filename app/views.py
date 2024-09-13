@@ -42,7 +42,8 @@ def get_ggl_data(params):
     return items
 
 def csv_export(request):
-    response = HttpResponse(content_type='text/csv; charset=Shift-JIS')
+  # response = HttpResponse(content_type='text/csv; charset=Shift-JIS')
+    response = HttpResponse(content_type='text/csv; charset=utf-8')
     t = datetime.now()
     str_time = t.strftime('%Y%m%d%H%M')
     f = "BookLog" + "_" + str_time + ".csv"
