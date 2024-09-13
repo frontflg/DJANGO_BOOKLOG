@@ -30,8 +30,16 @@
             </div>
         </div>
         <div class="col-md-6">
+         {% if not booklog.coverimg %}
             <img src="https://images-fe.ssl-images-amazon.com/images/P/{{ booklog.isbn10 }}.09.LZZZZZZZ"
-                 class="card-img-top w-50" alt="{{ booklog.bookname }}">
+                 class="card-img-top w-50" alt="画像無し {{ booklog.bookname }}">
+         {% elif booklog.coverimg == 'noimage_book.jpg' %}
+            <img src="https://www.books.or.jp/img/noimage_book.jpg"
+                 class="card-img-top w-50" alt="画像無し {{ booklog.coverimg }}">
+         {% else %}
+            <img src="https://ndlsearch.ndl.go.jp/thumbnail/{{ booklog.isbn13 }}.jpg"
+                 class="card-img-top w-50" alt="画像無し {{ booklog.coverimg }}">
+         {% endif %}
         </div>
     </div>
 
