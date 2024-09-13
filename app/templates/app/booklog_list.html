@@ -1,64 +1,10 @@
 {% extends 'app/base.html' %}
 {% block header %}
 <h1>読書履歴管理</h1>
-<p><a class="btn btn-primary" href="../">書籍検索</a>&nbsp;
-   <a class="btn btn-primary" href="../create/">新規作成</a></p>
-{% endblock header %}
-{% block content %}
-<div class="shadow-sm p-3 mb-5 bg-white rounded">
-  <div class="tab-wrap">
-    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">一覧</label>
-    <div class="tab-content">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">ISBN13</th>
-            <th scope="col">タイトル</th>
-            <th scope="col">著者</th>
-            <th scope="col">ジャンル</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for booklog in booklogs %}
-          <tr>
-            <td>{{ booklog.isbn13 }}</td>
-            <td>{{ booklog.bookname }}</td>
-            <td>{{ booklog.author }}</td>
-            <td>{{ booklog.genre }}</td>
-            <td><a class="btn btn-info btn-sm" href="../logdetail/{{ booklog.id }}">詳細</a></td>
-            <td><a class="btn btn-warning btn-sm" href="../update/{{ booklog.id }}">編集</a></td>
-            <td><a class="btn btn-danger btn-sm" href="../delete/{{ booklog.id }}">削除</a></td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">表紙</label>
-    <div class="tab-content">
-      <table class="table">
-        <tbody>
-          <tr>
-            {% for booklog in booklogs %}
-            <td><table><tr height="235"><td>
-                   <img src="https://images-fe.ssl-images-amazon.com/images/P/{{ booklog.isbn10 }}.09.LZZZZZZZ"
-                        alt="{{ booklog.booknam }}" width="146"><br>
-                </td></tr>
-                <tr height="90"><td>{{ booklog.bookname }}</td></tr>
-                <tr><td>
-                   <a class="btn btn-info btn-sm"    href="../logdetail/{{ booklog.id }}">詳細</a>
-                   <a class="btn btn-warning btn-sm" href="../update/{{ booklog.id }}">編集</a>
-                   <a class="btn btn-danger btn-sm"  href="../delete/{{ booklog.id }}">削除</a>
-                </td></tr>
-                </table>
-            </td>
-            {% endfor %}
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
 <table class="table w-60"><tr><td>
+  <p><a class="btn btn-primary" href="../">書籍検索</a>&nbsp;
+     <a class="btn btn-success" href="../create/">新規作成</a></p>
+</td><td>
 <nav aria-label="Page navigation">
   <ul class="pagination text-center">
     {% if page_obj.has_previous %}
@@ -98,4 +44,67 @@
   </td>
 </tr>
 </table>
+{% endblock header %}
+{% block content %}
+<div class="shadow-sm p-3 mb-5 bg-white rounded">
+  <div class="tab-wrap">
+    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-01">一覧</label>
+    <div class="tab-content">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ISBN13</th>
+            <th scope="col">タイトル</th>
+            <th scope="col">著者</th>
+            <th scope="col">ジャンル</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for booklog in booklogs %}
+          <tr>
+            <td width="60">{{ booklog.isbn13 }}</td>
+            <td>{{ booklog.bookname }}</td>
+            <td>{{ booklog.author }}</td>
+            <td>{{ booklog.genre }}</td>
+            <td><a class="btn btn-info btn-sm" href="../logdetail/{{ booklog.id }}">詳細</a></td>
+            <td><a class="btn btn-warning btn-sm" href="../update/{{ booklog.id }}">編集</a></td>
+            <td><a class="btn btn-danger btn-sm" href="../delete/{{ booklog.id }}">削除</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-02">表紙</label>
+    <div class="tab-content">
+      <table class="table">
+        <tbody>
+          <tr>
+            {% for booklog in booklogs %}
+            <td><table><tr height="235"><td>
+                {% if not booklog.coverimg %}
+                   <img src="https://images-fe.ssl-images-amazon.com/images/P/{{ booklog.isbn10 }}.09.LZZZZZZZ"
+                        alt="{{ booklog.bookname }}" width="146"><br>
+                {% elif booklog.coverimg == 'noimage_book.jpg' %}
+                   <img src="https://www.books.or.jp/img/noimage_book.jpg"
+                        alt="画像無し {{ booklog.coverimg }}" width="146"><br>
+                {% else %}
+                   <img src="https://ndlsearch.ndl.go.jp/thumbnail/{{ booklog.isbn13 }}.jpg"
+                        alt="画像無し {{ booklog.coverimg }}" width="146"><br>
+                {% endif %}
+                </td></tr>
+                <tr height="90"><td>{{ booklog.bookname }}</td></tr>
+                <tr><td>
+                   <a class="btn btn-info btn-sm"    href="../logdetail/{{ booklog.id }}">詳細</a>
+                   <a class="btn btn-warning btn-sm" href="../update/{{ booklog.id }}">編集</a>
+                   <a class="btn btn-danger btn-sm"  href="../delete/{{ booklog.id }}">削除</a>
+                </td></tr>
+                </table>
+            </td>
+            {% endfor %}
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 {% endblock content %}
